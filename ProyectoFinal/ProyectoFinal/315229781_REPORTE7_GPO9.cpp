@@ -154,6 +154,7 @@ int main( )
     Model pokearriba((char*)"Models/Pokeball/pokearriba.obj");
     Model pokeabajo((char*)"Models/Pokeball/pokeabajo.obj");
     Model mueble1((char*)"Models/Mueble/mueble1.obj");
+    Model mueblep((char*)"Models/Mueblep/mueblep.obj");
     Model escritorio((char*)"Models/Escritorio/escritorio.obj");
     GLuint texture;
     glGenTextures(1, &texture);
@@ -220,8 +221,8 @@ int main( )
         model = glm::mat4(1);
         
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        escritorio.Draw(shader);
-        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+        mueblep.Draw(shader);
+        model = glm::translate(model, glm::vec3(2.0f, -5.0f, 0.0f));
         glBindVertexArray(0);
 
         glActiveTexture(GL_TEXTURE0);
