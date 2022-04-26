@@ -1,4 +1,4 @@
-// Practica 7
+// Proyecto Final
 // No. Cuenta: 315229781
 // Grupo: 9
 
@@ -37,7 +37,7 @@ void DoMovement( );
 
 
 // Camera
-Camera camera( glm::vec3( 0.0f, 0.0f, 3.0f ) );
+Camera camera( glm::vec3( 0.0f, 4.0f, 3.0f ) );
 bool keys[1024];
 GLfloat lastX = 400, lastY = 300;
 bool firstMouse = true;
@@ -150,12 +150,12 @@ int main( )
     glEnableVertexAttribArray(2);
 
     // Load textures
-    Model box((char*)"Models/Box/box.obj");
-    Model pokearriba((char*)"Models/Pokeball/pokearriba.obj");
-    Model pokeabajo((char*)"Models/Pokeball/pokeabajo.obj");
     Model mueble1((char*)"Models/Mueble/mueble1.obj");
     Model mueblep((char*)"Models/Mueblep/mueblep.obj");
     Model escritorio((char*)"Models/Escritorio/escritorio.obj");
+    Model cama((char*)"Models/Bed/Bed2.obj");
+    Model casa((char*)"Models/Fachada/fachada(ventanas).obj");
+    Model repisa((char*)"Models/Repisa/repisa.obj");
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -207,22 +207,46 @@ int main( )
         // Draw the loaded model
         glm::mat4 model(1);
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        //glDrawElements(GL_TRIANGLES, 6, GL_FLAT, 0);
-        //Pizza.Draw(shader);
 
-        //model = glm:: mat4(1);
-        //model = glm::rotate(model, glm::radians(-rot), glm::vec3(1.0f, 0.0f, 0.0f));
-        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        //pokearriba.Draw(shader);
-        //model = glm::mat4(1);
-        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        //pokeabajo.Draw(shader);
-
-        model = glm::mat4(1);
         
+        //Mueble pequeño
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(-11.3f, 1.0f, -7.8f));
+        model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         mueblep.Draw(shader);
-        model = glm::translate(model, glm::vec3(2.0f, -5.0f, 0.0f));
+        //Mueble tv
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(-14.0f, 1.0f, -7.6f));
+        model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        mueble1.Draw(shader);
+        //Casa
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        casa.Draw(shader);
+        //Repisa
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(-12.0f, 5.0f, -0.01f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        repisa.Draw(shader);
+        //Cama
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(-15.5f, 1.5f, -2.0f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        //model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        cama.Draw(shader);
+        //Escritorio
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(-11.0f, 0.9f, -0.7f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        escritorio.Draw(shader);
         glBindVertexArray(0);
 
         glActiveTexture(GL_TEXTURE0);
