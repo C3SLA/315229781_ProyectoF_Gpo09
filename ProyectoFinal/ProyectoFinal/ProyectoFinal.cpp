@@ -156,6 +156,7 @@ int main( )
     Model cama((char*)"Models/Bed/Bed2.obj");
     Model casa((char*)"Models/Fachada/fachada(ventanas).obj");
     Model repisa((char*)"Models/Repisa/repisa.obj");
+    Model silla((char*)"Models/Silla/chair.obj");
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -233,6 +234,13 @@ int main( )
         model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         repisa.Draw(shader);
+        //silla
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(-12.0f, 1.0f, -2.0f));
+        model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.9f, 0.9f, 0.9f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        silla.Draw(shader);
         //Cama
         model = glm::mat4(1);
         model = glm::translate(model, glm::vec3(-15.5f, 1.5f, -2.0f));
