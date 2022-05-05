@@ -226,6 +226,14 @@ int main()
 	Model puerta((char*)"Models/Puerta/door.obj");
 	Model repisa((char*)"Models/Repisa/repisa.obj");
 	Model silla((char*)"Models/Silla/chair.obj");
+	Model piso((char*)"Models/Piso/floor.obj");
+	Model entradaIzq((char*)"Models/Entrada/entradaizq.obj");
+	Model entradaDer((char*)"Models/Entrada/entradader.obj");
+	Model gas((char*)"Models/Gas/gs.obj");
+
+
+
+
 	// Build and compile our shader program
 
 	//Inicialización de KeyFrames
@@ -551,12 +559,42 @@ int main()
 		//Carga de modelo 
 		glm::mat4 model(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//Piso
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(35.0f, -0.02f, 3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		piso.Draw(lightingShader);
 		//Casa
+	    glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		model = glm::mat4(1);
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.75);
 		casa.Draw(lightingShader);
+		//Entrada Izq
+        model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(0.002f, 0.0f, 11.86f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		entradaIzq.Draw(lightingShader);
+		//Entrada Der
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(0.012f, 0.0f, 11.86f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		entradaDer.Draw(lightingShader);
+		//Estacion de Gas
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(85.4f, 0.01f, 0.2f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		gas.Draw(lightingShader);
 		//Puerta Izq
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-7.53f, 0.93f, -6.78f));
