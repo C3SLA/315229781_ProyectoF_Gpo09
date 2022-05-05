@@ -152,9 +152,11 @@ int main( )
     // Load textures
     Model mueble1((char*)"Models/Mueble/mueble1.obj");
     Model mueblep((char*)"Models/Mueblep/mueblep.obj");
+    Model tv((char*)"Models/TV/tv.obj");
     Model escritorio((char*)"Models/Escritorio/escritorio.obj");
     Model cama((char*)"Models/Bed/Bed2.obj");
     Model casa((char*)"Models/Fachada/fachada(ventanas).obj");
+    Model puerta((char*)"Models/Puerta/door.obj");
     Model repisa((char*)"Models/Repisa/repisa.obj");
     Model silla((char*)"Models/Silla/chair.obj");
     GLuint texture;
@@ -208,8 +210,26 @@ int main( )
         // Draw the loaded model
         glm::mat4 model(1);
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-
-        
+        //Casa
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        casa.Draw(shader);
+        //Puerta Izq
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(-7.53f, 0.93f, -6.78f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        puerta.Draw(shader);
+        //Puerta Der
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(3.43f, 0.93f, -6.78f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        puerta.Draw(shader);
         //Mueble pequeño
         model = glm::mat4(1);
         model = glm::translate(model, glm::vec3(-11.3f, 1.0f, -7.8f));
@@ -222,12 +242,13 @@ int main( )
         model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         mueble1.Draw(shader);
-        //Casa
+        //tv
         model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(-14.0f, 3.17f, -7.6f));
         model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        model = glm::scale(model, glm::vec3(0.9f, 0.9f, 0.9f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        casa.Draw(shader);
+        tv.Draw(shader);
         //Repisa
         model = glm::mat4(1);
         model = glm::translate(model, glm::vec3(-12.0f, 5.0f, -0.01f));
