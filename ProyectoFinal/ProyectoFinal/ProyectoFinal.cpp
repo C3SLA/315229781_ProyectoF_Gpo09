@@ -40,7 +40,7 @@ const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera
-Camera  camera(glm::vec3(0.0f, 0.0f, 0.0f));
+Camera  camera(glm::vec3(0.0f, 5.0f, 0.0f));
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
@@ -230,6 +230,9 @@ int main()
 	Model entradaIzq((char*)"Models/Entrada/entradaizq.obj");
 	Model entradaDer((char*)"Models/Entrada/entradader.obj");
 	Model gas((char*)"Models/Gas/gs.obj");
+	Model mwindow((char*)"Models/Ventana/pwindow.obj");
+	Model c1window((char*)"Models/Ventana/c1window.obj");
+	Model c2window((char*)"Models/Ventana/c2window.obj");
 
 
 
@@ -527,7 +530,7 @@ int main()
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.outerCutOff"), glm::cos(glm::radians(15.0f)));
 
 		// Set material properties
-		glUniform1f(glGetUniformLocation(lightingShader.Program, "material.shininess"), 16.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "material.shininess"), 20.0f);
 
 		// Create camera transformations
 		glm::mat4 view;
@@ -559,20 +562,17 @@ int main()
 		//Carga de modelo 
 		glm::mat4 model(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
 		//Piso
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(35.0f, -0.02f, 3.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		piso.Draw(lightingShader);
 		//Casa
-	    glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		model = glm::mat4(1);
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
-		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.75);
 		casa.Draw(lightingShader);
 		//Entrada Izq
         model = glm::mat4(1);
@@ -655,6 +655,33 @@ int main()
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		escritorio.Draw(lightingShader);
+		//Ventana Principal
+		glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-4.24f, 0.0f, -24.0f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.45);
+		mwindow.Draw(lightingShader);
+		//Ventana Cuarto1
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-35.5f, 0.0f, -13.f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.45);
+		c1window.Draw(lightingShader);
+		//Ventana Cuarto2
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(35.5f, 0.0f, -13.365f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.45);
+		c2window.Draw(lightingShader);
+		glDisable(GL_BLEND);  //Desactiva el canal alfa 
 		glBindVertexArray(0);
 		////Personaje
 		//view = camera.GetViewMatrix();
