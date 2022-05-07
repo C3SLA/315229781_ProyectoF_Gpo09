@@ -47,7 +47,21 @@ bool keys[1024];
 bool firstMouse = true;
 float range = 0.0f;
 float rot = 0.0f;
-
+float rotw = 0.0f;
+float rotw1 = 0.0f;
+float rotd = 0.0f;
+float rotd1 = 0.0f;
+float rotb = 0.0f;
+float movball_x = 0.0f;
+float movball_y = 0.0f;
+bool anim = false;
+bool anim1 = false;
+bool anim2 = false;
+bool anim3 = false;
+bool anim4 = false;
+bool anim5 = false;
+bool anim6 = false;
+bool anim7 = false;
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
@@ -82,6 +96,8 @@ typedef struct _frame
 	float brazoIncDer;
 	float rotInc;
 	float rotInc2;
+
+
 
 
 }FRAME;
@@ -233,7 +249,11 @@ int main()
 	Model mwindow((char*)"Models/Ventana/pwindow.obj");
 	Model c1window((char*)"Models/Ventana/c1window.obj");
 	Model c2window((char*)"Models/Ventana/c2window.obj");
-
+	Model sdwindow((char*)"Models/Ventana/sdwindow.obj");
+	Model siwindow((char*)"Models/Ventana/siwindow.obj");
+	Model idwindow((char*)"Models/Ventana/idwindow.obj");
+	Model iiwindow((char*)"Models/Ventana/iiwindow.obj");
+	Model ball((char*)"Models/Pelota/ball.obj");
 
 
 
@@ -597,33 +617,33 @@ int main()
 		gas.Draw(lightingShader);
 		//Puerta Izq
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-7.53f, 0.93f, -6.78f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-7.55f, 4.273f, -8.421));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		model = glm::rotate(model, glm::radians(rotd), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		puerta.Draw(lightingShader);
 		//Puerta Der
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(3.43f, 0.93f, -6.78f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(3.41f, 4.273f, -8.421f));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		model = glm::rotate(model, glm::radians(rotd1), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		puerta.Draw(lightingShader);
 		//Mueble pequeño
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-11.3f, 1.0f, -7.8f));
+		model = glm::translate(model, glm::vec3(-12.3f, 1.0f, -7.8f));
 		model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		mueblep.Draw(lightingShader);
 		//Mueble tv
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-14.0f, 1.0f, -7.6f));
+		model = glm::translate(model, glm::vec3(-15.0f, 1.0f, -7.6f));
 		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		mueble1.Draw(lightingShader);
 		//tv
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-14.0f, 3.17f, -7.6f));
+		model = glm::translate(model, glm::vec3(-15.0f, 3.17f, -7.6f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.9f, 0.9f, 0.9f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -643,11 +663,17 @@ int main()
 		silla.Draw(lightingShader);
 		//Cama
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-15.5f, 1.5f, -2.0f));
+		model = glm::translate(model, glm::vec3(-15.0f, 1.5f, -2.0f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		cama.Draw(lightingShader);
+		//Pelota
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(17.5f + movball_x, 10.7f+ movball_y, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(rotb), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ball.Draw(lightingShader);
 		//Escritorio
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-11.0f, 0.9f, -0.7f));
@@ -655,6 +681,7 @@ int main()
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		escritorio.Draw(lightingShader);
+		//Inician objetos usando canal alfa
 		//Ventana Principal
 		glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -667,20 +694,54 @@ int main()
 		mwindow.Draw(lightingShader);
 		//Ventana Cuarto1
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-35.5f, 0.0f, -13.f));
+		model = glm::translate(model, glm::vec3(-17.6f, 8.55f, -6.7f));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		model = glm::rotate(model, glm::radians(rotw), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
 		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.45);
 		c1window.Draw(lightingShader);
 		//Ventana Cuarto2
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(35.5f, 0.0f, -13.365f));
+		model = glm::translate(model, glm::vec3(17.6f, 8.44f, -6.43f));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		model = glm::rotate(model, glm::radians(rotw1), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
 		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.45);
 		c2window.Draw(lightingShader);
+		//Ventana Sala SP
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(6.8f, 0.0f, 9.665f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.45);
+		sdwindow.Draw(lightingShader);
+		//Ventana Sala ID
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(6.8f, 0.0f, 23.71f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.45);
+		idwindow.Draw(lightingShader);
+		//Ventana Sala SI
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-15.0f, 0.0f, 10.32f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.45);
+		siwindow.Draw(lightingShader);
+		//Ventana Sala II
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-15.0f, 0.0f, 24.3f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "ColorAlpha"), 1.0, 1.0, 1.0, 0.45);
+		iiwindow.Draw(lightingShader);
 		glDisable(GL_BLEND);  //Desactiva el canal alfa 
 		glBindVertexArray(0);
 		////Personaje
@@ -894,7 +955,10 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 		}
 
 	}
-
+	if (keys[GLFW_KEY_O])
+	{
+		anim = true;
+	}
 
 	if (GLFW_KEY_ESCAPE == key && GLFW_PRESS == action)
 	{
@@ -945,67 +1009,155 @@ void MouseCallback(GLFWwindow *window, double xPos, double yPos)
 // Moves/alters the camera positions based on user input
 void DoMovement()
 {
-
-	if (keys[GLFW_KEY_1])
+	//Ventana Cuarto1
+	if (keys[GLFW_KEY_1] && -45.0f <= rotw)
 	{
+		rotw -= 0.5;;
+	}
 
-		rot += 1;
+	if (keys[GLFW_KEY_2] && 0.0f >= rotw)
+	{
+		rotw += 0.5;
+
+	}
+	//Ventana Cuarto2
+	if (keys[GLFW_KEY_3] && 45.0f >= rotw1)
+	{
+		rotw1 += 0.5;;
+	}
+
+	if (keys[GLFW_KEY_4] && 0.0f <= rotw1)
+	{
+		rotw1 -= 0.5;
+
+	}
+	//Puerta Cuarto1
+	if (keys[GLFW_KEY_5] && -65.0f <= rotd)
+	{
+		rotd -= 0.5;;
+	}
+
+	if (keys[GLFW_KEY_6] && 0.0f >= rotd)
+	{
+		rotd += 0.5;
+
+	}
+	//Puerta Cuarto2
+	if (keys[GLFW_KEY_7] && 65.0f >= rotd1)
+	{
+		rotd1 += 0.5;;
+	}
+
+	if (keys[GLFW_KEY_8] && 0.0f <= rotd1)
+	{
+		rotd1 -= 0.5;
+
+	}
+	// Animacion Pelota
+	if (anim)
+	{
+		rotb += 0.01f;
+		movball_x += 0.01f;
+		if (movball_x >= 0.93f)
+
+		{
+			anim = false;
+			anim1 = true;
+
+		}
 
 	}
 
-	if (keys[GLFW_KEY_2])
+	if (anim1)
 	{
-		if (rotRodIzq<80.0f)
-			rotRodIzq += 1.0f;
+		rotb += 0.5f;
+		movball_y -= 0.25f;
+
+		if (movball_y <= -10.5f)
+
+		{
+
+			anim1 = false;
+			anim2 = true;
+		}
+	}
+	if (anim2)
+	{
+		rotb += 0.5f;
+		movball_y += 0.2f;
+
+		if (movball_y >= -5.5f)
+
+		{
+
+			anim2 = false;
+			anim3 = true;
+		}
+	}
+	if (anim3)
+	{
+		rotb += 0.5f;
+		movball_y -= 0.2f;
+
+		if (movball_y <= -10.5f)
+			{
+
+			anim3 = false;
+			anim4 = true;
+			}
+	}
+	if (anim4)
+	{
+		rotb += 0.5f;
+		movball_y += 0.16f;
+
+		if (movball_y >= -7.5f)
+		{
+
+			anim4 = false;
+			anim5 = true;
+		}
+	}
+	if (anim5)
+	{
+		rotb += 0.5f;
+		movball_y -= 0.17f;
+
+		if (movball_y <= -10.5f)
+		{
+
+			anim5 = false;
+			anim6 = true;
 			
+		}
 	}
-
-	if (keys[GLFW_KEY_3])
+	if (anim6)
 	{
-		if (rotRodIzq>-45)
-			rotRodIzq -= 1.0f;
-		
+		rotb += 0.5f;
+		movball_y += 0.12f;
+
+		if (movball_y >= -9.5f)
+		{
+
+			anim6 = false;
+			anim7 = true;
+
+		}
 	}
-	if (keys[GLFW_KEY_4])
+	if (anim7)
 	{
-		if (rotRodDer < 80.0f)
-			rotRodDer += 1.0f;
+		rotb += 0.5f;
+		movball_y -= 0.1f;
 
+		if (movball_y <= -10.5f)
+		{
+
+			anim7 = false;
+
+		}
 	}
+	
 
-	if (keys[GLFW_KEY_5])
-	{
-		if (rotRodDer > -45)
-			rotRodDer -= 1.0f;
-
-
-
-	}
-	if (keys[GLFW_KEY_6])
-	{
-		if (brazoIzq < 80.0f)
-			brazoIzq += 1.0f;
-
-	}
-
-	if (keys[GLFW_KEY_7])
-	{
-		if (brazoIzq > -45)
-			brazoIzq -= 1.0f;
-
-	}
-	if (keys[GLFW_KEY_8])
-	{
-		if (brazoDer < 80.0f)
-			brazoDer += 1.0f;
-
-	}
-
-	if (keys[GLFW_KEY_9])
-	{
-		if (brazoDer > -45)
-			brazoDer -= 1.0f;
-	}
 	//Mov Personaje
 	if (keys[GLFW_KEY_H])
 	{
