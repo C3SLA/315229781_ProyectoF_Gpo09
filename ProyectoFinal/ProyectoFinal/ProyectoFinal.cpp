@@ -38,6 +38,11 @@ void animacion();
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
+//Tiro parabolico
+float g = 9.8;
+float v = 13;
+float ang = 45;
+
 
 // Camera
 Camera  camera(glm::vec3(0.0f, 5.0f, 0.0f));
@@ -54,6 +59,10 @@ float rotd1 = 0.0f;
 float rotb = 0.0f;
 float movball_x = 0.0f;
 float movball_y = 0.0f;
+float rad = ang / 57.3;
+float tiro_x = 0; 
+float tiro_y = 0;
+
 bool anim = false;
 bool anim1 = false;
 bool anim2 = false;
@@ -62,6 +71,8 @@ bool anim4 = false;
 bool anim5 = false;
 bool anim6 = false;
 bool anim7 = false;
+bool anim8 = false;
+
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
@@ -226,13 +237,13 @@ int main()
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 
-	//Model BotaDer((char*)"Models/Personaje/bota.obj");
-	//Model PiernaDer((char*)"Models/Personaje/piernader.obj");
-	//Model PiernaIzq((char*)"Models/Personaje/piernaizq.obj");
-	//Model Torso((char*)"Models/Personaje/torso.obj");
-	//Model BrazoDer((char*)"Models/Personaje/brazoder.obj");
-	//Model BrazoIzq((char*)"Models/Personaje/brazoizq.obj");
-	//Model Cabeza((char*)"Models/Personaje/cabeza.obj");
+	Model BotaDer((char*)"Models/Personaje/bota.obj");
+	Model PiernaDer((char*)"Models/Personaje/piernader.obj");
+	Model PiernaIzq((char*)"Models/Personaje/piernaizq.obj");
+	Model Torso((char*)"Models/Personaje/torso.obj");
+	Model BrazoDer((char*)"Models/Personaje/brazoder.obj");
+	Model BrazoIzq((char*)"Models/Personaje/brazoizq.obj");
+	Model Cabeza((char*)"Models/Personaje/cabeza.obj");
 	Model mueble1((char*)"Models/Mueble/mueble1.obj");
 	Model mueblep((char*)"Models/Mueblep/mueblep.obj");
 	Model tv((char*)"Models/TV/tv.obj");
@@ -254,6 +265,7 @@ int main()
 	Model idwindow((char*)"Models/Ventana/idwindow.obj");
 	Model iiwindow((char*)"Models/Ventana/iiwindow.obj");
 	Model ball((char*)"Models/Pelota/ball.obj");
+	Model fut((char*)"Models/Fut/fut.obj");
 
 
 
@@ -263,10 +275,10 @@ int main()
 	
 	for(int i=0; i<MAX_FRAMES; i++)
 	{
-		KeyFrame[i].posX = 0;
-		KeyFrame[i].incX = 0;
-		KeyFrame[i].incY = 0;
-		KeyFrame[i].incZ = 0;
+		KeyFrame[i].posX = 0.0;
+		KeyFrame[i].incX = 0.0;
+		KeyFrame[i].incY = 0.0;
+		KeyFrame[i].incZ = 0.0;
 		KeyFrame[i].rotRodIzq = 0;
 		KeyFrame[i].rotRodDer = 0;
 		KeyFrame[i].brazoIzq = 0;
@@ -577,11 +589,65 @@ int main()
 		glBindVertexArray(VAO);
 		glm::mat4 tmp = glm::mat4(1.0f); //Temp
 
-
-
 		//Carga de modelo 
+
+
+		////Personaje
 		glm::mat4 model(1);
+		tmp = model = glm::translate(model, glm::vec3(0, 1, 0));
+		model = glm::translate(model, glm::vec3(posX, posY, posZ));
+		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Torso.Draw(lightingShader);
+		//Pierna Izq
+		model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -0.1f));
+		model = glm::translate(model, glm::vec3(posX, posY, posZ));
+		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
+		//model = glm::rotate(model, glm::radians(-rotRodIzq), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		PiernaDer.Draw(lightingShader);
+		//Pie Izq
+		model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		BotaDer.Draw(lightingShader);
+
+		//Pierna Der
+		model = glm::translate(tmp, glm::vec3(0.5f, 0.0f, -0.1f));
+		model = glm::translate(model, glm::vec3(posX, posY, posZ));
+		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(-rotRodDer), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		PiernaIzq.Draw(lightingShader);
+		//Pie Der
+		model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		BotaDer.Draw(lightingShader);
+
+		//Brazo derecho
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(posX, posY, posZ));
+		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-0.75f, 2.5f, 0));
+		//model = glm::rotate(model, glm::radians(-brazoDer), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		BrazoDer.Draw(lightingShader);
+
+		//Brazo Izquierdo
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(posX, posY, posZ));
+		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(0.75f, 2.5f, 0));
+		model = glm::rotate(model, glm::radians(-brazoIzq), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		BrazoIzq.Draw(lightingShader);
+
+		//Cabeza
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(posX, posY, posZ));
+		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::translate(model, glm::vec3(0.0f, 2.5f, 0));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Cabeza.Draw(lightingShader);
 
 		//Piso
 		model = glm::mat4(1);
@@ -674,6 +740,12 @@ int main()
 		model = glm::rotate(model, glm::radians(rotb), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		ball.Draw(lightingShader);
+		//Pelota de fut
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-5.5f + tiro_x, 0.47f + tiro_y, 20.0f));
+		model = glm::scale(model, glm::vec3(4.3f, 4.3f, 4.3f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		fut.Draw(lightingShader);
 		//Escritorio
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-11.0f, 0.9f, -0.7f));
@@ -744,73 +816,8 @@ int main()
 		iiwindow.Draw(lightingShader);
 		glDisable(GL_BLEND);  //Desactiva el canal alfa 
 		glBindVertexArray(0);
-		////Personaje
-		//view = camera.GetViewMatrix();
-		//glm::mat4 model(1);
-		//tmp = model = glm::translate(model, glm::vec3(0, 1, 0));
-		//model = glm::translate(model,glm::vec3(posX,posY,posZ));
-		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//Torso.Draw(lightingShader);
-		////Pierna Izq
-		//view = camera.GetViewMatrix();
-		//model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -0.1f));
-		//model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
-		//model = glm::rotate(model, glm::radians(-rotRodIzq), glm::vec3(1.0f, 0.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//PiernaDer.Draw(lightingShader);
-		////Pie Izq
-		//view = camera.GetViewMatrix();
-		//model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//BotaDer.Draw(lightingShader);
+		
 
-		////Pierna Der
-		//view = camera.GetViewMatrix();
-		//model = glm::translate(tmp, glm::vec3(0.5f, 0.0f, -0.1f));
-		//model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
-		//model = glm::rotate(model, glm::radians(-rotRodDer), glm::vec3(1.0f, 0.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//PiernaIzq.Draw(lightingShader);
-		////Pie Der
-		//view = camera.GetViewMatrix();
-		//model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//BotaDer.Draw(lightingShader);
-
-		////Brazo derecho
-		//view = camera.GetViewMatrix();
-		//model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
-		//model = glm::translate(model, glm::vec3(-0.75f, 2.5f, 0));
-		//model = glm::rotate(model, glm::radians(-brazoDer), glm::vec3(1.0f, 0.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//BrazoDer.Draw(lightingShader);
-
-		////Brazo Izquierdo
-		//view = camera.GetViewMatrix();
-		//model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
-		//model = glm::translate(model, glm::vec3(0.75f, 2.5f, 0));
-		//model = glm::rotate(model, glm::radians(-brazoIzq), glm::vec3(1.0f, 0.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//BrazoIzq.Draw(lightingShader);
-
-		////Cabeza
-		//view = camera.GetViewMatrix();
-		//model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
-		//model = glm::translate(model, glm::vec3(0.0f, 2.5f, 0));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//Cabeza.Draw(lightingShader);
-
-
-		glBindVertexArray(0);
 
 
 		// Also draw the lamp object, again binding the appropriate shader
@@ -959,7 +966,10 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 	{
 		anim = true;
 	}
-
+	if (keys[GLFW_KEY_P])
+	{
+		anim8 = true;
+	}
 	if (GLFW_KEY_ESCAPE == key && GLFW_PRESS == action)
 	{
 		glfwSetWindowShouldClose(window, GL_TRUE);
@@ -1051,6 +1061,19 @@ void DoMovement()
 	if (keys[GLFW_KEY_8] && 0.0f <= rotd1)
 	{
 		rotd1 -= 0.5;
+
+	}
+	// Animacion futbol
+	if (anim8)
+	{
+		tiro_x = tiro_x+ 0.5f;
+		tiro_y = tan(ang) * tiro_x - (g / (2 * v * v * cos(rad) * cos(rad))) * tiro_x * tiro_x;
+		if (tiro_y <= 0.0f)
+
+		{
+			anim8 = false;
+
+		}
 
 	}
 	// Animacion Pelota
