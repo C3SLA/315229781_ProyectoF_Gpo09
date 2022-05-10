@@ -76,7 +76,7 @@ bool anim8 = false;
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
-glm::vec3 PosIni(-95.0f, 1.0f, -45.0f);
+
 bool active;
 
 
@@ -85,10 +85,10 @@ GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
 // Keyframes
-float posX =PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq = 0, rotRodDer, brazoIzq, brazoDer;
+float posX , posY , posZ , rotRodIzq = 0, rotRodDer, brazoIzq, brazoDer;
 
 #define MAX_FRAMES 9
-int i_max_steps = 190;
+int i_max_steps = 100;
 int i_curr_steps = 0;
 typedef struct _frame
 {
@@ -114,16 +114,16 @@ typedef struct _frame
 }FRAME;
 
 FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;			//introducir datos
+int FrameIndex = 3;			//introducir datos
 bool play = false;
 int playIndex = 0;
 
 // Positions of the point lights
 glm::vec3 pointLightPositions[] = {
 	glm::vec3(posX,posY,posZ),
-	glm::vec3(10,20,0),
-	glm::vec3(0,20,0),
-	glm::vec3(0,20,-10)
+	glm::vec3(0,0,0),
+	glm::vec3(0,0,0),
+	glm::vec3(0,0,0)
 };
 
 glm::vec3 LightP1;
@@ -273,24 +273,32 @@ int main()
 
 	//Inicialización de KeyFrames
 	
-	for(int i=0; i<MAX_FRAMES; i++)
+	for (int i = 0; i < MAX_FRAMES; i++)
 	{
-	/*	KeyFrame[i].posX = 0.0;
-		KeyFrame[i].incX = 0.0;
-		KeyFrame[i].incY = 0.0;
-		KeyFrame[i].incZ = 0.0;
-		KeyFrame[i].rotRodIzq = 0;
-		KeyFrame[i].rotRodDer = 0;
-		KeyFrame[i].brazoIzq = 0;
-		KeyFrame[i].brazoDer = 0;
-		KeyFrame[i].brazoIncIzq = 0;
-		KeyFrame[i].brazoIncDer = 0;
-		KeyFrame[i].rotInc = 0;
-		KeyFrame[i].rotInc2 = 0;
-	}*/
+		/*	KeyFrame[i].posX = 0.0;
+			KeyFrame[i].incX = 0.0;
+			KeyFrame[i].incY = 0.0;
+			KeyFrame[i].incZ = 0.0;
+			KeyFrame[i].rotRodIzq = 0;
+			KeyFrame[i].rotRodDer = 0;
+			KeyFrame[i].brazoIzq = 0;
+			KeyFrame[i].brazoDer = 0;
+			KeyFrame[i].brazoIncIzq = 0;
+			KeyFrame[i].brazoIncDer = 0;
+			KeyFrame[i].rotInc = 0;
+			KeyFrame[i].rotInc2 = 0;
+		}*/
+		KeyFrame[0].rotRodIzq = 50.0;
+		KeyFrame[0].rotRodDer = -50.0;
 
-		KeyFrame[0].rotRodDer = 0.0;
+	    KeyFrame[1].brazoDer = -50.0;
+	    KeyFrame[1].brazoIzq = 50.0;
 
+		KeyFrame[2].rotRodIzq = 100.0;
+		KeyFrame[2].rotRodDer = -50.0;
+		KeyFrame[2].rotRodDer = 0.0;
+
+	}
 
 	// Set up vertex data (and buffer(s)) and attribute pointers
 	GLfloat vertices[] =
@@ -596,44 +604,39 @@ int main()
 	//Personaje
 		view = camera.GetViewMatrix();
 		glm::mat4 model(1);
-		tmp = model = glm::translate(model, glm::vec3(-10.0,2.0, 20.0));
+		tmp = model = glm::translate(model, glm::vec3(-7.3f, 1.8f, 19.6));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Torso.Draw(lightingShader);
 		//Pierna Izq
 		view = camera.GetViewMatrix();
-		model = glm::translate(tmp, glm::vec3(-0.2f, 0.0f, -0.4f));
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.3f, 0.3f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0));
 		model = glm::rotate(model, glm::radians(-rotRodIzq), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		PiernaDer.Draw(lightingShader);
 		//Pie Izq
 		view = camera.GetViewMatrix();
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-10.3f, 1.1f, 19.5f));
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::translate(model, glm::vec3(0.0, -1.1f, -0.2f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		BotaDer.Draw(lightingShader);
-
 		//Pierna Der
 		view = camera.GetViewMatrix();
-		model = glm::translate(tmp, glm::vec3(-0.1f, 0.0f, 0.5f));
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.3f, -0.5f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0));
 		model = glm::rotate(model, glm::radians(-rotRodDer), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		PiernaIzq.Draw(lightingShader);
 		//Pie Der
 		view = camera.GetViewMatrix();
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-10.3f, 1.1f, 20.5f));
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::translate(model, glm::vec3(0.0, -1.1f, -0.2f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		BotaDer.Draw(lightingShader);
 
 		//Brazo derecho
 		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-10.0f, 3.3f, 21.2f));
+		model = glm::translate(model, glm::vec3(-7.2f, 3.1f, 20.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(-brazoDer), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -642,18 +645,17 @@ int main()
 		//Brazo Izquierdo
 		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-10.0f, 3.3f, 18.8f));
+		model = glm::translate(model, glm::vec3(-7.4f, 3.1f, 18.5f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(-brazoDer), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(-brazoIzq), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		BrazoIzq.Draw(lightingShader);
 
 		//Cabeza
 		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-10.0f, 3.7f, 20.0f));
+		model = glm::translate(model, glm::vec3(-7.0f, 3.7f, 19.6f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(-brazoDer), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Cabeza.Draw(lightingShader);
@@ -907,7 +909,7 @@ void animacion()
 			if (i_curr_steps >= i_max_steps) //end of animation between frames?
 			{
 				playIndex++;
-				if (playIndex>FrameIndex - 2)	//end of total animation?
+				if (playIndex>FrameIndex - 3)	//end of total animation?
 				{
 					printf("termina anim\n");
 					playIndex = 0;
@@ -945,10 +947,10 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 {
 	if (keys[GLFW_KEY_L])
 	{
-		if (play == false && (FrameIndex > 1))
+		if (play == false && (FrameIndex > 3))
 		{
 
-			resetElements();
+			
 			//First Interpolation				
 			interpolation();
 
