@@ -1,0 +1,44 @@
+newmtl v44__wire_008061138
+illum 4
+Kd 0.03 0.24 0.54
+Ka 0.03 0.24 0.54
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.35 0.35 0.35
+Ns 32.00
+newmtl yamaboushi_leaf_spr1_1_Mat
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd yamaboushi_leaf_spr1_1.png
+Ni 1.00
+Ks 0.30 0.30 0.30
+Ns 128.00
+newmtl yamaboushi_leaf_spr1_2_Mat
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd yamaboushi_leaf_spr1_2.png
+Ni 1.00
+Ks 0.30 0.30 0.30
+Ns 128.00
+newmtl yamaboushi_leaf_spr1_3_Mat
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd yamaboushi_leaf_spr1_3.png
+Ni 1.00
+Ks 0.30 0.30 0.30
+Ns 128.00
+newmtl yamaboushi_tan_trunk_Mat
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.40 0.40
+Tf 1.00 1.00 1.00
+map_Kd yamaboushi_tan_trunk.png
+Ni 1.00
+Ks 0.30 0.30 0.30
+Ns 128.00
