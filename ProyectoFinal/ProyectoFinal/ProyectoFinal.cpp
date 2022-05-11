@@ -45,7 +45,7 @@ float ang = 45;
 
 
 // Camera
-Camera  camera(glm::vec3(0.0f, 5.0f, 0.0f));
+Camera  camera(glm::vec3(0.0f, 12.0f, 45.0f));
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
@@ -685,10 +685,18 @@ int main()
 		sofa.Draw(lightingShader);
 		//Arbol
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-10.002f, 0.0f, 60.86f));
+		model = glm::translate(model, glm::vec3(-25.002f, 0.0f, 50.86f));
 		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		arbol.Draw(lightingShader);
+
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-15.002f, 0.0f, 50.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+
 		//Arbol
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(0.002f, 0.0f, 50.86f));
@@ -697,7 +705,120 @@ int main()
 		arbol.Draw(lightingShader);
 		//Arbol
 		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(5.002f, 0.0f, 60.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+
+		//Arbol
+		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(15.002f, 0.0f, 60.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(20.002f, 0.0f, 50.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(30.002f, 0.0f, 50.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(35.002f, 0.0f, 60.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(45.002f, 0.0f, 60.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(50.002f, 0.0f, 50.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(60.002f, 0.0f, 50.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(65.002f, 0.0f, 60.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(80.002f, 0.0f, 50.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(85.002f, 0.0f, 60.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(95.002f, 0.0f, 60.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(70.002f, 0.0f, 5.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(80.002f, 0.0f, -5.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(70.002f, 0.0f, -15.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(85.002f, 0.0f, -25.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(75.002f, 0.0f, -35.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(80.002f, 0.0f, -42.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(77.002f, 0.0f, -49.86f));
 		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		arbol.Draw(lightingShader);
