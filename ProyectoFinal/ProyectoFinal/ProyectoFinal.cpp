@@ -121,9 +121,9 @@ int playIndex = 0;
 // Positions of the point lights
 glm::vec3 pointLightPositions[] = {
 	glm::vec3(posX,posY,posZ),
-	glm::vec3(0,0,0),
-	glm::vec3(0,0,0),
-	glm::vec3(0,0,0)
+	glm::vec3(20,-0.3,60),
+	glm::vec3(60,-0.3,60),
+	glm::vec3(70,-0.3,0)
 };
 
 glm::vec3 LightP1;
@@ -256,7 +256,6 @@ int main()
 	Model piso((char*)"Models/Piso/floor.obj");
 	Model entradaIzq((char*)"Models/Entrada/entradaizq.obj");
 	Model entradaDer((char*)"Models/Entrada/entradader.obj");
-	Model gas((char*)"Models/Gas/gs.obj");
 	Model mwindow((char*)"Models/Ventana/pwindow.obj");
 	Model c1window((char*)"Models/Ventana/c1window.obj");
 	Model c2window((char*)"Models/Ventana/c2window.obj");
@@ -270,7 +269,7 @@ int main()
 	Model pc((char*)"Models/PC/pc_obj.obj");
 	Model toy((char*)"Models/Toy/toy.obj");
 	Model arbol((char*)"Models/arbol/yamaboushi_tan_6000_a_spr1.obj");
-
+	Model sofa((char*)"Models/Sofa/sofa.obj");
 
 
 
@@ -560,7 +559,7 @@ int main()
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].position"), pointLightPositions[3].x, pointLightPositions[3].y, pointLightPositions[3].z);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].ambient"), 0.05f, 0.05f, 0.05f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].diffuse"), 0.5f, 0.5f, 0.5f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].specular"), 1.0f, 0.0f, 1.0f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].specular"), 1.0f, 1.0f, 0.0f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].constant"), 1.0f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].linear"), 0.09f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].quadratic"), 0.032f);
@@ -678,6 +677,12 @@ int main()
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		casa.Draw(lightingShader);
+		//Sofa
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(0.002f, 0.9f, 0.86f));
+		model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		sofa.Draw(lightingShader);
 		//Arbol
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-10.002f, 0.0f, 60.86f));
@@ -686,7 +691,7 @@ int main()
 		arbol.Draw(lightingShader);
 		//Arbol
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(0.002f, 0.0f, 55.86f));
+		model = glm::translate(model, glm::vec3(0.002f, 0.0f, 50.86f));
 		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		arbol.Draw(lightingShader);
@@ -710,13 +715,6 @@ int main()
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		entradaDer.Draw(lightingShader);
-		//Estacion de Gas
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(85.4f, 0.01f, 0.2f));
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		gas.Draw(lightingShader);
 		//Puerta Izq
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-7.55f, 4.273f, -8.421));

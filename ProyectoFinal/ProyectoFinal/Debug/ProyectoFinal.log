@@ -1,19 +1,23 @@
 ﻿  ProyectoFinal.cpp
 C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(42,14): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
 C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(62,11): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(496,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(814,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(823,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(832,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(840,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(848,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(856,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(864,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1054,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1055,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1059,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1060,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1062,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1063,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(495,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(818,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(827,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(836,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(844,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(852,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(860,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(868,94): warning C4305: 'argumento': truncamiento de 'double' a 'GLfloat'
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1058,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1059,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1063,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1064,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1066,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(1067,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+soil2-debug.lib(etc1_utils.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(etc1_utils.obj)' o en 'C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 soil2-debug.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_DXT.obj)' o en 'C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+soil2-debug.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_helper.obj)' o en 'C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+soil2-debug.lib(SOIL2.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(SOIL2.obj)' o en 'C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
   ProyectoFinal.vcxproj -> C:\Users\south\Desktop\Repositorio\315229781_ProyectoF_Gpo09\ProyectoFinal\Debug\ProyectoFinal.exe
