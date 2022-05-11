@@ -114,7 +114,7 @@ typedef struct _frame
 }FRAME;
 
 FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 3;			//introducir datos
+int FrameIndex = 4;			//introducir datos
 bool play = false;
 int playIndex = 0;
 
@@ -266,6 +266,11 @@ int main()
 	Model iiwindow((char*)"Models/Ventana/iiwindow.obj");
 	Model ball((char*)"Models/Pelota/ball.obj");
 	Model fut((char*)"Models/Fut/fut.obj");
+	Model xbox((char*)"Models/Xbox/xbox.obj");
+	Model pc((char*)"Models/PC/pc_obj.obj");
+	Model toy((char*)"Models/Toy/toy.obj");
+	Model arbol((char*)"Models/arbol/yamaboushi_tan_6000_a_spr1.obj");
+
 
 
 
@@ -296,7 +301,9 @@ int main()
 
 		KeyFrame[2].rotRodIzq = 100.0;
 		KeyFrame[2].rotRodDer = -50.0;
-		KeyFrame[2].rotRodDer = 0.0;
+
+		KeyFrame[3].rotRodIzq = 50.0;
+		KeyFrame[3].rotRodDer = -50.0;
 
 	}
 
@@ -671,6 +678,24 @@ int main()
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		casa.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-10.002f, 0.0f, 60.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(0.002f, 0.0f, 55.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+		//Arbol
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(15.002f, 0.0f, 60.86f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
 		//Entrada Izq
         model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(0.002f, 0.0f, 11.86f));
@@ -712,6 +737,12 @@ int main()
 		model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		mueblep.Draw(lightingShader);
+		//Xbox
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-12.3f, 2.6f, -7.8f));
+		model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		xbox.Draw(lightingShader);
 		//Mueble tv
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-15.0f, 1.0f, -7.6f));
@@ -731,9 +762,15 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		repisa.Draw(lightingShader);
+		////Toy
+		//model = glm::mat4(1);
+		//model = glm::translate(model, glm::vec3(-12.0f, 5.59f, -0.01f));
+		//model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//toy.Draw(lightingShader);
 		//silla
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-12.0f, 1.0f, -2.0f));
+		model = glm::translate(model, glm::vec3(-11.0f, 1.0f, -2.0f));
 		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.9f, 0.9f, 0.9f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -759,11 +796,18 @@ int main()
 		fut.Draw(lightingShader);
 		//Escritorio
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-11.0f, 0.9f, -0.7f));
+		model = glm::translate(model, glm::vec3(-10.0f, 0.9f, -0.7f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		escritorio.Draw(lightingShader);
+		//PC
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-10.8f, 2.45f, 0.1f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		pc.Draw(lightingShader);
 		//Inician objetos usando canal alfa
 		//Ventana Principal
 		glEnable(GL_BLEND);//Activa la funcionalidad para trabajar el canal alfa
