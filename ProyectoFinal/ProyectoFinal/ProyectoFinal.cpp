@@ -760,12 +760,12 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		repisa.Draw(lightingShader);
-		////Toy
-		//model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(-12.0f, 5.59f, -0.01f));
-		//model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//toy.Draw(lightingShader);
+		//Toy
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-12.0f, 5.59f, -0.01f));
+		model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		toy.Draw(lightingShader);
 		//silla
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-11.0f, 1.0f, -2.0f));
