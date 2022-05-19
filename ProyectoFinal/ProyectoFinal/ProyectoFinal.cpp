@@ -270,6 +270,13 @@ int main()
 	Model toy((char*)"Models/Toy/toy.obj");
 	Model arbol((char*)"Models/arbol/yamaboushi_tan_6000_a_spr1.obj");
 	Model sofa((char*)"Models/Sofa/sofa.obj");
+	Model cama1((char*)"Models/cama/bed3.obj");
+	Model cabecera((char*)"Models/m_cabecera/cabecera.obj");
+	Model mueble((char*)"Models/mueble/mueble.obj");
+	Model muebleg((char*)"Models/muebleg/mg.obj");
+	Model mueblej((char*)"Models/mueblej/mueblej.obj");
+
+
 
 
 
@@ -683,6 +690,47 @@ int main()
 		model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		sofa.Draw(lightingShader);
+		//CUARTO 2
+		// Cama
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(11.0f, 1.58f, -2.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cama1.Draw(lightingShader);
+		//Mueble pequeño1
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(8.5f, 0.92f, -0.1f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cabecera.Draw(lightingShader);
+		//Mueble pequeño2
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(13.3f, 0.92f, -0.1f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cabecera.Draw(lightingShader);
+		//Mueble
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(12.0f, 0.8f, -7.65f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		mueble.Draw(lightingShader);
+		//Mueble Grande
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(16.35f, 0.78f, -4.0f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		muebleg.Draw(lightingShader);
+		//Mueble juguetes
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(12.0f, 6.0f, -8.27f));
+		model = glm::scale(model, glm::vec3(0.8f, 0.8f, 0.8f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		mueblej.Draw(lightingShader);
+
 		//Arbol
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-25.002f, 0.0f, 50.86f));
@@ -761,67 +809,6 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		arbol.Draw(lightingShader);
 
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(80.002f, 0.0f, 50.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(85.002f, 0.0f, 60.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
-
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(95.002f, 0.0f, 60.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(70.002f, 0.0f, 5.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(80.002f, 0.0f, -5.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(70.002f, 0.0f, -15.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(85.002f, 0.0f, -25.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(75.002f, 0.0f, -35.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(80.002f, 0.0f, -42.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
-		//Arbol
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(77.002f, 0.0f, -49.86f));
-		model = glm::scale(model, glm::vec3(1.6f, 1.6f, 1.6f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arbol.Draw(lightingShader);
 		//Entrada Izq
         model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(0.002f, 0.0f, 11.86f));
