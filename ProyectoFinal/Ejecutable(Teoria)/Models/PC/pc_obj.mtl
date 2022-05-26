@@ -1,0 +1,66 @@
+newmtl Material__25
+illum 4
+Kd 0.04 0.04 0.04
+Ka 0.04 0.04 0.04
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.90 0.90 0.90
+Ns 80.00
+newmtl Material__35
+illum 4
+Kd 0.59 0.59 0.59
+Ka 0.59 0.59 0.59
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.90 0.90 0.90
+Ns 5.00
+newmtl Material__37
+illum 4
+Kd 0.37 0.37 0.37
+Ka 0.37 0.37 0.37
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.90 0.90 0.90
+Ns 10.00
+newmtl lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd wheel.jpg
+Ni 1.00
+newmtl lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd roof2.jpg
+Ni 1.00
+newmtl lambert6SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd gray.jpg
+Ni 1.00
+newmtl lambert7SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd gray.jpg
+Ni 1.00
+newmtl lambert8SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd w.jpg
+Ni 1.00
+newmtl lambert9SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd g.png
+Ni 1.00
